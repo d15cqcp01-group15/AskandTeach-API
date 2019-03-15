@@ -7,6 +7,7 @@ class User < ApplicationRecord
          if: -> { new_record? || !password.nil? }
 
   PERMIT_PARAMS = %i[
+  username
   email
   password
   password_confirmation
