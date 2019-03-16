@@ -16,7 +16,7 @@ namespace :db do
     20.times do
       Course.create! user: @users.sample,
                      price: Faker::Number.decimal(2),
-                     time: Time.now,
+                     uptime: Time.now,
                      skill: %i[listening speaking reading writing].sample,
                      district: Faker::Address.state,
                      city: Faker::Address.city,

@@ -3,7 +3,7 @@ class CreateCourses < ActiveRecord::Migration[5.2]
     create_table :courses do |t|
       t.references :user, foreign_key: true
       t.float :price
-      t.date :time
+      t.date :uptime
       t.integer :skill
       t.string :district
       t.string :city
