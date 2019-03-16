@@ -1,5 +1,7 @@
 namespace :db do
   task make_user: :environment do
+
+    # Making user
     30.times do
       User.create! name: Faker::Name.name,
                    username: Faker::Name.name,
@@ -13,6 +15,7 @@ namespace :db do
   task make_data: :environment do
     @users = User.all
 
+    # Making courses
     20.times do
       Course.create! user: @users.sample,
                      price: Faker::Number.decimal(2),
@@ -24,5 +27,14 @@ namespace :db do
                      description: Faker::Name.name
     end
     puts '-----------> Made Courses successfully'
+
+    @courses = Course.all
+
+    # Making details courses
+    100.times do
+      DetailCourse.create! user: @users.sample,
+                           course: @courses.sample
+    end
+    puts '-----------> Made Detail Course successfully'
   end
 end
