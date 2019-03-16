@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :detail_courses
   resources :courses
   resources :users, param: :_username
   post '/auth/login', to: 'authentication#login'
