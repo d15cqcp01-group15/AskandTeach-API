@@ -7,7 +7,7 @@ namespace :db do
                    password: '123456',
                    password_confirmation: '123456'
     end
-    puts 'Made users successfully'
+    puts '-----------> Made users successfully'
   end
 
   task make_data: :environment do
@@ -23,5 +23,6 @@ namespace :db do
                      address: Faker::Address.full_address,
                      description: Faker::Name.name
     end
+    puts '-----------> Made Courses successfully'
   end
 end

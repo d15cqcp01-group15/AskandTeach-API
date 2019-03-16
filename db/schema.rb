@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2019_03_16_062657) do
   create_table "courses", force: :cascade do |t|
     t.bigint "user_id"
     t.float "price"
-    t.date "time"
+    t.date "uptime"
     t.integer "skill"
     t.string "district"
     t.string "city"
