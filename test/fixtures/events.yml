@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  user: one
+  address: MyString
+  district: MyString
+  city: MyString
+  uptime: 
+  price: 1.5
+  description: MyString
+
+two:
+  title: MyString
+  user: two
+  address: MyString
+  district: MyString
+  city: MyString
+  uptime: 
+  price: 1.5
+  description: MyString

@@ -36,5 +36,17 @@ namespace :db do
                            course: @courses.sample
     end
     puts '-----------> Made Detail Course successfully'
+
+    30.times do
+      Event.create! user: @users.sample,
+                    district: Faker::Address.state,
+                    city: Faker::Address.city,
+                    address: Faker::Address.full_address,
+                    uptime: Time.now,
+                    price: Faker::Number.decimal(2),
+                    description: Faker::Name.name
+    end
+    puts '-----------> Made Events Course successfully'
+
   end
 end
