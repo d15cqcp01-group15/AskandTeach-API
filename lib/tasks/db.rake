@@ -37,6 +37,7 @@ namespace :db do
     end
     puts '-----------> Made Detail Course successfully'
 
+    # Making event courses
     30.times do
       Event.create! user: @users.sample,
                     district: Faker::Address.state,
@@ -48,5 +49,13 @@ namespace :db do
     end
     puts '-----------> Made Events Course successfully'
 
+    @events = Event.all
+
+    # Making Details Event courses
+    100.times do
+      DetailEvent.create! user: @users.sample,
+                          event: @events.sample
+    end
+    puts '-----------> Made Details Events Course successfully'
   end
 end
