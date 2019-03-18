@@ -7,6 +7,7 @@ class User < ApplicationRecord
          if: -> { new_record? || !password.nil? }
 
   has_many :courses
+  has_many :events
 
   PERMIT_PARAMS = %i[
   username
