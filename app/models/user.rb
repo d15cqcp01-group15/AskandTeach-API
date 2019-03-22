@@ -9,9 +9,12 @@ class User < ApplicationRecord
   has_many :courses
   has_many :events
 
+  mount_uploader :avatar, AvatarUploader
+
   PERMIT_PARAMS = %i[
   username
   email
+  avatar
   password
   password_confirmation
   ].freeze
