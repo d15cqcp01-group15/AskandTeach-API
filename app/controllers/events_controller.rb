@@ -10,7 +10,14 @@ class EventsController < ApplicationController
 
   # GET /events/1
   def show
-    render json: @event
+    render json: { id: @event.id,
+                   title: @event.title,
+                   creator: @event.user.username,
+                   adress: @event.address,
+                   joined_student: @event.detail_events.count,
+                   price: @event.price,
+                   description: @event.description
+    }
   end
 
   # POST /events
