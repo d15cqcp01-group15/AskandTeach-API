@@ -10,7 +10,21 @@ class CoursesController < ApplicationController
 
   # GET /courses/1
   def show
-    render json: @course
+    render json: { id: @course.id,
+                   name: @course.user.username,
+                   price: @course.price,
+                   uptime: @course.uptime,
+                   skill: @course.skill,
+                   description: @course.description,
+                   student_list: get_student_list(@course),
+                   amount_student: @course.detail_courses.count,
+                   class_opened: @course.user.courses.count
+    }
+  end
+
+  def get_student_list course
+    student_list = course.detail_courses.pluck(:user_id)
+    return User.where(id: student_list).pluck(:username)
   end
 
   # POST /courses
@@ -41,7 +55,7 @@ class CoursesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_course
-      @course = Course.find(params[:id])
+      @course = Course.includes(:detail_courses, :user).find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
