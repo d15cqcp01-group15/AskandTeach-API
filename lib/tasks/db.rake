@@ -1,6 +1,13 @@
 namespace :db do
   task make_user: :environment do
 
+    # User for checking
+    User.create! name: Faker::Name.name,
+                 username: Faker::Name.name,
+                 email: 'thiennguyen.mark@gmail.com',
+                 password: '123456',
+                 password_confirmation: '123456'
+
     # Making user
     30.times do
       User.create! name: Faker::Name.name,
@@ -40,6 +47,7 @@ namespace :db do
     # Making event courses
     30.times do
       Event.create! user: @users.sample,
+                    title: Faker::Name.name,
                     district: Faker::Address.state,
                     city: Faker::Address.city,
                     address: Faker::Address.full_address,
