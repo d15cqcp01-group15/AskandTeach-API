@@ -5,12 +5,12 @@ class TopicsController < ApplicationController
   def index
     @topics = Topic.all
 
-    render json: @topics.as_json(only: [:id, :title, :content, :topic_type], include: [{creator: {only: [:id, :username]}}])
+    render json: @topics.as_json(only: [:id, :title, :content, :topic_type, :created_at], include: [{creator: {only: [:id, :username]}}])
   end
 
   # GET /topics/1
   def show
-    render json: @topic.as_json(only: [:id, :title, :content, :topic_type], include: [{creator: {only: [:id, :username]}}])
+    render json: @topic.as_json(only: [:id, :title, :content, :topic_type, :created_at], include: [{creator: {only: [:id, :username]}}])
   end
 
   # POST /topics
