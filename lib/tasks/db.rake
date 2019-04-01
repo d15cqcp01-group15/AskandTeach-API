@@ -69,7 +69,7 @@ namespace :db do
   task make_topic: :environment do
     @users = User.all
     30.times do
-      Topic.create! user: @users.sample,
+      Topic.create! creator: @users.sample,
                     title: Faker::Name.name,
                     content: Faker::Lorem.paragraph,
                     topic_type: %i[speaking reading listening writing].sample
