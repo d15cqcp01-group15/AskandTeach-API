@@ -66,4 +66,13 @@ namespace :db do
     end
     puts '-----------> Made Details Events Course successfully'
   end
+  task make_topic: :environment do
+    @users = User.all
+    30.times do
+      Topic.create! user: @users.sample,
+                    title: Faker::Name.name,
+                    content: Faker::Lorem.paragraph,
+                    topic_type: %i[speaking reading listening writing].sample
+    end
+  end
 end

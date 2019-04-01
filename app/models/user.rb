@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
   has_many :courses
   has_many :events
+  has_many :topics
 
   mount_uploader :avatar, AvatarUploader
 
