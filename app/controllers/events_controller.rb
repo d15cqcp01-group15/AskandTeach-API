@@ -10,14 +10,7 @@ class EventsController < ApplicationController
 
   # GET /events/1
   def show
-    render json: { id: @event.id,
-                   title: @event.title,
-                   creator: @event.user.username,
-                   adress: @event.address,
-                   joined_student: @event.detail_events.count,
-                   price: @event.price,
-                   description: @event.description
-    }
+    render json: json_handler(@event)
   end
 
   # POST /events
@@ -54,5 +47,16 @@ class EventsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def event_params
       params.require(:event).permit(:title, :user_id, :address, :district, :city, :uptime, :price, :description)
+    end
+
+    def json_handler(event)
+      return { id: event.id,
+               title: event.title,
+               creator: event.user.username,
+               adress: event.address,
+               joined_student: event.detail_events.count,
+               price: event.price,
+               description: event.description
+      }
     end
 end

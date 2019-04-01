@@ -13,10 +13,10 @@ class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
 
   PERMIT_PARAMS = %i[
-  username
-  email
-  avatar
-  password
-  password_confirmation
+    username
+    email
+    avatar
+    password
+    password_confirmation
   ].freeze
 end

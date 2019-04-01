@@ -5,7 +5,7 @@ class CoursesController < ApplicationController
   def index
     @courses = Course.all
 
-    render json: @courses
+    render json: @courses.as_json(only: Course::JSON_AGUMENT, include: [{user: {only: [:id, :username]}}])
   end
 
   # GET /courses/1
