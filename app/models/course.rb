@@ -28,6 +28,8 @@ class Course < ApplicationRecord
     end
   end
 
+  private
+
   def amount_student
     self.detail_courses.count
   end
