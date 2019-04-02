@@ -76,7 +76,7 @@ namespace :db do
     end
   end
   task update_cover_course: :environment do
-    LIST_URL = 'https://res.cloudinary.com/no-nam/image/upload/v1554172948/listening.jpg'
+    LIST_URL = 'https://res.cloudinary.com/no-nam/image/upload/v1554216712/listen.jpg'
     READ_URL = 'https://res.cloudinary.com/no-nam/image/upload/v1554172721/reading.jpg'
     WRITE_URL = 'https://res.cloudinary.com/no-nam/image/upload/v1554172781/writing.jpg'
     SPEAK_URL = 'https://res.cloudinary.com/no-nam/image/upload/v1554172881/speaking.jpg'
