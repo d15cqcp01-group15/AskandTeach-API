@@ -6,7 +6,7 @@ class Course < ApplicationRecord
 
   enum skill: %i[listening speaking reading writing]
 
-  JSON_AGUMENT = [:id, :price, :uptime, :skill, :district, :city, :address, :description, :cover_image, :amount_student].freeze
+  JSON_AGUMENT = [:id, :price, :uptime, :skill, :district, :city, :address, :description, :cover_image, :amount_student, :list_student, :class_opened].freeze
 
   LIST_URL = 'https://res.cloudinary.com/no-nam/image/upload/v1554172948/listening.jpg'
   READ_URL = 'https://res.cloudinary.com/no-nam/image/upload/v1554172721/reading.jpg'
@@ -30,5 +30,14 @@ class Course < ApplicationRecord
 
   def amount_student
     self.detail_courses.count
+  end
+
+  def list_student
+    student_list = self.detail_courses.pluck(:user_id)
+    return User.where(id: student_list).pluck(:username)
+  end
+
+  def class_opened
+    self.user.courses.count
   end
 end
