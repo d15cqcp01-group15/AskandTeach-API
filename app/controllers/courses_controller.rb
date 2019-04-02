@@ -18,7 +18,8 @@ class CoursesController < ApplicationController
                    description: @course.description,
                    student_list: get_student_list(@course),
                    amount_student: @course.detail_courses.count,
-                   class_opened: @course.user.courses.count
+                   class_opened: @course.user.courses.count,
+                   cover_image: @course.cover_image
     }
   end
 
