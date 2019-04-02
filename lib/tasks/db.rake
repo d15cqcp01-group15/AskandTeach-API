@@ -75,4 +75,30 @@ namespace :db do
                     topic_type: %i[speaking reading listening writing].sample
     end
   end
+  task update_cover_course: :environment do
+    LIST_URL = 'https://res.cloudinary.com/no-nam/image/upload/v1554172948/listening.jpg'
+    READ_URL = 'https://res.cloudinary.com/no-nam/image/upload/v1554172881/speaking.jpg'
+    WRITE_URL = 'https://res.cloudinary.com/no-nam/image/upload/v1554172781/writing.jpg'
+    SPEAK_URL = 'https://res.cloudinary.com/no-nam/image/upload/v1554172881/speaking.jpg'
+
+    Course.all.each do |course|
+      if course.speaking?
+        course.cover_image = SPEAK_URL
+        course.save
+      end
+      if course.reading?
+        course.cover_image = READ_URL
+        course.save
+      end
+      if course.writing?
+        course.cover_image = WRITE_URL
+        course.save
+      end
+      if course.listening?
+        course.cover_image = LIST_URL
+        course.save
+      end
+    end
+    puts 'update cover image for course successfully'
+  end
 end
