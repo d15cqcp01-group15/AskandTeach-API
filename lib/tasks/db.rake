@@ -101,4 +101,25 @@ namespace :db do
     end
     puts 'update cover image for course successfully'
   end
+
+  task update_location_course: :environment do
+    districts = ['Quận 1', 'Quận 2', 'Quận 3',
+                 'Quận 5', 'Quận 6', 'Quận 4',
+                 'Quận 7', "Quận 8", 'Quận 9',
+                 'Quận 10', 'Quận 11', 'Quận 12',
+                 'Quận Thủ Đức', 'Quận Gò Vấp',
+                 'Quận Bình Thạnh', 'Quận Tân Bình',
+                 'Quận Tân Phú', 'Quận Phú Nhuận',
+                 'Quận Bình Tân', 'Quận Củ Chi'
+               ]
+    citites = 'TP Hồ Chí Minh'
+
+    Course.all.each do |course|
+      course.district = districts.sample
+      course.city = citites
+      course.save
+    end
+
+    puts 'Update location successfully !'
+  end
 end
