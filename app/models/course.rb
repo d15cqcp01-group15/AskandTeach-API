@@ -6,7 +6,7 @@ class Course < ApplicationRecord
 
   enum skill: %i[listening speaking reading writing]
 
-  JSON_AGUMENT = [:id, :price, :uptime, :skill, :district, :city, :address, :description, :cover_image].freeze
+  JSON_AGUMENT = [:id, :price, :uptime, :skill, :district, :city, :address, :description, :cover_image, :amount_student].freeze
 
   LIST_URL = 'https://res.cloudinary.com/no-nam/image/upload/v1554172948/listening.jpg'
   READ_URL = 'https://res.cloudinary.com/no-nam/image/upload/v1554172721/reading.jpg'
@@ -29,6 +29,6 @@ class Course < ApplicationRecord
   end
 
   def amount_student
-    self.detail_course.count
+    self.detail_courses.count
   end
 end
