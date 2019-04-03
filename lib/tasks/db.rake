@@ -102,7 +102,7 @@ namespace :db do
     puts 'update cover image for course successfully'
   end
 
-  task update_location_course: :environment do
+  task update_location_course_event: :environment do
     districts = ['Quận 1', 'Quận 2', 'Quận 3',
                  'Quận 5', 'Quận 6', 'Quận 4',
                  'Quận 7', "Quận 8", 'Quận 9',
@@ -118,6 +118,13 @@ namespace :db do
       course.district = districts.sample
       course.city = citites
       course.save
+    end
+
+    Event.all.each do |event|
+      event.district = districts.sample
+      event.city = citites
+      event.save
+
     end
 
     puts 'Update location successfully !'
