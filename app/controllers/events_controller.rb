@@ -5,7 +5,7 @@ class EventsController < ApplicationController
   def index
     @events = Event.all
 
-    render json: @events
+    render json: @events.as_json(only: [:id, :title, :address, :district, :city, :uptime, :price, :amount_student], include: [{user: {only: [:id, :username]}}])
   end
 
   # GET /events/1
