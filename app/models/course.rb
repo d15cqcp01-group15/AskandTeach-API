@@ -8,7 +8,7 @@ class Course < ApplicationRecord
 
   JSON_AGUMENT = [:id, :price, :uptime, :skill, :district, :city, :address, :description, :cover_image, :amount_student, :list_student, :class_opened].freeze
 
-  LIST_URL = 'https://res.cloudinary.com/no-nam/image/upload/v1554172948/listening.jpg'
+  LIST_URL = 'https://res.cloudinary.com/no-nam/image/upload/v1554216712/listen.jpg'
   READ_URL = 'https://res.cloudinary.com/no-nam/image/upload/v1554172721/reading.jpg'
   WRITE_URL = 'https://res.cloudinary.com/no-nam/image/upload/v1554172781/writing.jpg'
   SPEAK_URL = 'https://res.cloudinary.com/no-nam/image/upload/v1554172881/speaking.jpg'
