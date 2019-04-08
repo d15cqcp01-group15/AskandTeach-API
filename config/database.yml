@@ -2,7 +2,7 @@ default: &default
   adapter: postgresql
   encoding: utf8
   template: template0
-  username: admin
+  username: b
   password:
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
