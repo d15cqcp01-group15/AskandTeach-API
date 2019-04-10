@@ -1,5 +1,6 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :update, :destroy]
+  before_action :authorize_request, only: [:create]
 
   # GET /courses
   def index
@@ -61,6 +62,6 @@ class CoursesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def course_params
-      params.require(:course).permit(:user_id, :price, :uptime, :skill, :district, :city, :address, :description)
+      params.require(:course).permit(:user_id, :price, :uptime, :skill, :district, :city, :address, :description).merge(user_id: @current_user.id)
     end
 end

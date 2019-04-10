@@ -1,5 +1,6 @@
 class TopicsController < ApplicationController
   before_action :set_topic, only: [:show, :update, :destroy]
+  before_action :authorize_request, only: [:create]
 
   # GET /topics
   def index
@@ -46,6 +47,6 @@ class TopicsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def topic_params
-      params.require(:topic).permit(:title, :content, :topic_type)
+      params.require(:topic).permit(:title, :content, :topic_type).merge(user_id: @current_user.id)
     end
 end
