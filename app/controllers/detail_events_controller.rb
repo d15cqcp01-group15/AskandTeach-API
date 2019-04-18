@@ -1,5 +1,6 @@
 class DetailEventsController < ApplicationController
   before_action :set_detail_event, only: [:show, :update, :destroy]
+  before_action :authorize_request, only: [:create]
 
   # GET /detail_events
   def index
@@ -46,6 +47,6 @@ class DetailEventsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def detail_event_params
-      params.require(:detail_event).permit(:event_id).merge(user_id: @current_user.id)
+      params.permit(:event_id).merge(user_id: @current_user.id)
     end
 end

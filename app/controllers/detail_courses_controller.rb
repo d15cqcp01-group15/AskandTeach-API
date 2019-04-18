@@ -47,6 +47,6 @@ class DetailCoursesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def detail_course_params
-      params.require.(:detail_course).permit(:course_id).merge(user_id: @current_user.id)
+      params.permit(:course_id).merge(user_id: @current_user.id)
     end
 end
