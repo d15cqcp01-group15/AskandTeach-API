@@ -62,6 +62,6 @@ class CoursesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def course_params
-      params.require(:course).permit(Course::COURSE_PARAMS).merge(user_id: @current_user.id)
+      params.permit(Course::COURSE_PARAMS).merge(user_id: @current_user.id)
     end
 end
