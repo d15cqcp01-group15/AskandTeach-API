@@ -7,7 +7,7 @@ class Course < ApplicationRecord
   enum skill: %i[listening speaking reading writing]
 
   JSON_AGUMENT = [:id, :price, :uptime, :skill, :district, :city, :address, :description, :cover_image, :amount_student, :list_student, :class_opened].freeze
-  COURSE_PARAMS = [:user_id, :price, :uptime, :skill, :district, :city, :address, :description].freeze
+  COURSE_PARAMS = [:price, :uptime, :skill, :district, :city, :address, :description].freeze
 
   LIST_URL = 'https://res.cloudinary.com/no-nam/image/upload/v1554216712/listen.jpg'
   READ_URL = 'https://res.cloudinary.com/no-nam/image/upload/v1554172721/reading.jpg'
