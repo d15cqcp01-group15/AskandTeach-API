@@ -6,5 +6,5 @@ class Event < ApplicationRecord
     self.detail_events.count
   end
 
-  EVENT_AGUMENT = [:id, :title, :address, :district, :city, :uptime, :price, :amount_student]
+  EVENT_AGUMENT = [:id, :title, :address, :description, :district, :city, :uptime, :price, :amount_student]
 end
