@@ -47,6 +47,6 @@ class TopicsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def topic_params
-      params.permit(:title, :content, :topic_type).merge(user_id: @current_user.id)
+      params.require(:course).permit(:title, :content, :topic_type).merge(user_id: @current_user.id)
     end
 end
