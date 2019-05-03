@@ -1,12 +1,16 @@
 class Course < ApplicationRecord
   before_save :update_cover_image
 
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
+  reverse_geocoded_by :latitude, :longitude
+
   belongs_to :user
   has_many :detail_courses
 
   enum skill: %i[listening speaking reading writing]
 
-  JSON_AGUMENT = [:id, :price, :uptime, :skill, :district, :city, :address, :description, :cover_image, :amount_student, :list_student, :class_opened].freeze
+  JSON_AGUMENT = [:id, :price, :uptime, :skill, :district, :city, :address, :longitude, :latitude,  :description, :cover_image, :amount_student, :list_student, :class_opened].freeze
   COURSE_PARAMS = ['price', 'uptime', 'skill', 'district', 'city', 'address', 'description'].freeze
 
   LIST_URL = 'https://res.cloudinary.com/no-nam/image/upload/v1554216712/listen.jpg'
