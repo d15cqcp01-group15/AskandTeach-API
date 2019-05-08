@@ -39,6 +39,15 @@ class DetailCoursesController < ApplicationController
     @detail_course.destroy
   end
 
+  def delete_register
+    user_id = params[:user_id]
+    course_id = params[:course_id]
+    DetailCourse.where(user_id: user_id, course_id: course_id).destroy_all
+    render json: {
+      message: "Unregister Succesfully"
+    }, status: 200
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_detail_course

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   post '/auth/login', to: 'authentication#login'
   post '/auth/signup', to: 'users#create'
+  delete '/unregister_course', to: 'detail_courses#delete_register'
 
   get '/*a', to: 'application#not_found'
 end

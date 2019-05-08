@@ -34,6 +34,7 @@ class DetailEventsController < ApplicationController
     end
   end
 
+
   # DELETE /detail_events/1
   def destroy
     @detail_event.destroy
