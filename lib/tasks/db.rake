@@ -129,4 +129,17 @@ namespace :db do
 
     puts 'Update location successfully !'
   end
+
+  task update_user_infor: :environment do
+
+    users = User.all
+    users.each do |user|
+      user.self_introduce = Faker::Lorem.paragraph(10)
+      user.birthday = Faker::Date.between(2.days.ago, Date.today)
+      user.save
+    end
+
+    puts '-------->Update users infor Succesfully'
+
+  end
 end

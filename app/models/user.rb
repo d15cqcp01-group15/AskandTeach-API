@@ -9,8 +9,18 @@ class User < ApplicationRecord
   has_many :courses
   has_many :events
   has_many :topics
+  has_many :detail_courses
+  has_many :detail_events
 
   mount_uploader :avatar, AvatarUploader
+
+  def opened_class
+    self.detail_courses.count
+  end
+
+  def joined_event
+    self.detail_events.count
+  end
 
   PERMIT_PARAMS = %i[
     username
