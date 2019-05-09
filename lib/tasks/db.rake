@@ -197,7 +197,8 @@ namespace :db do
     name1 = 'Thiện Nguyễn'
     name2 = 'Đức Tài'
     name3 = 'Anh Đức'
-    User.where(username: 'Demo User').each do |user|
+
+    User.all.each do |user|
       user.username = [name1, name2, name3].sample
       user.save
     end
