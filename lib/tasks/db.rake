@@ -202,5 +202,10 @@ namespace :db do
       user.username = [name1, name2, name3].sample
       user.save
     end
+
+    Course.where(user_id: 35).each do |course|
+      course.address = Faker::Address.full_address
+      course.save
+    end
   end
 end
