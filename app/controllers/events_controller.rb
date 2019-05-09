@@ -4,7 +4,7 @@ class EventsController < ApplicationController
 
   # GET /events
   def index
-    @events = Event.all
+    @events = Event.all.order(created_at: :desc)
 
     render json: @events.as_json(only: Event::EVENT_AGUMENT, include: [{user: {only: [:id, :username]}}])
   end
@@ -57,7 +57,8 @@ class EventsController < ApplicationController
                adress: event.address,
                joined_student: event.detail_events.count,
                price: event.price,
-               description: event.description
+               description: event.description,
+               open_time: event.open_time
       }
     end
 end

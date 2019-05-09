@@ -4,7 +4,7 @@ class CoursesController < ApplicationController
 
   # GET /courses
   def index
-    @courses = Course.all
+    @courses = Course.all.order(created_at: :desc)
 
     render json: @courses.as_json(only: Course::JSON_AGUMENT, include: [{user: {only: [:id, :username]}}])
   end
@@ -21,7 +21,8 @@ class CoursesController < ApplicationController
       student_list: get_student_list(@course),
       amount_student: @course.detail_courses.count,
       class_opened: @course.user.courses.count,
-      cover_image: @course.cover_image
+      cover_image: @course.cover_image,
+      open_time: @course.open_time
     }
   end
 
