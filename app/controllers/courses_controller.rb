@@ -11,22 +11,23 @@ class CoursesController < ApplicationController
 
   # GET /courses/1
   def show
-    render json: { id: @course.id,
-                   name: @course.user.username,
-                   price: @course.price,
-                   uptime: @course.uptime,
-                   skill: @course.skill,
-                   description: @course.description,
-                   student_list: get_student_list(@course),
-                   amount_student: @course.detail_courses.count,
-                   class_opened: @course.user.courses.count,
-                   cover_image: @course.cover_image
+    render json: {
+      id: @course.id,
+      name: @course.user.username,
+      price: @course.price,
+      uptime: @course.uptime,
+      skill: @course.skill,
+      description: @course.description,
+      student_list: get_student_list(@course),
+      amount_student: @course.detail_courses.count,
+      class_opened: @course.user.courses.count,
+      cover_image: @course.cover_image
     }
   end
 
   def get_student_list course
     student_list = course.detail_courses.pluck(:user_id)
-    return User.where(id: student_list).pluck(:username)
+    return User.where(id: student_list).pluck(:id, :username)
   end
 
   # POST /courses
