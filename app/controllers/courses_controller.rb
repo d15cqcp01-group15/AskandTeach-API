@@ -27,7 +27,12 @@ class CoursesController < ApplicationController
       amount_student: @course.detail_courses.count,
       class_opened: @course.user.courses.count,
       cover_image: @course.cover_image,
-      open_time: @course.open_time
+      open_time: @course.open_time,
+      user: {
+        id: @course.user.id,
+        username: @course.user.username,
+        profile_image: @course.user.profile_image
+      }
     }
   end
 
