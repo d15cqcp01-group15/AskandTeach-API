@@ -1,6 +1,6 @@
 class DetailCoursesController < ApplicationController
   before_action :set_detail_course, only: [:show, :update, :destroy]
-  before_action :authorize_request, only: [:create]
+  before_action :authorize_request, only: [:create, :delete_register]
 
   # GET /detail_courses
   def index
@@ -40,7 +40,7 @@ class DetailCoursesController < ApplicationController
   end
 
   def delete_register
-    user_id = params[:user_id]
+    user_id = @current_user.id
     course_id = params[:course_id]
     DetailCourse.where(user_id: user_id, course_id: course_id).destroy_all
     render json: {
