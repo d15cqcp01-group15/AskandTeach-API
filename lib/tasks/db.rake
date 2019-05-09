@@ -192,4 +192,14 @@ namespace :db do
        course.save
      end
   end
+
+  task update_user_name: :environment do
+    name1 = 'Thiện Nguyễn'
+    name2 = 'Đức Tài'
+    name3 = 'Anh Đức'
+    User.where(username: 'Demo User').each do |user|
+      user.username = [name1, name2, name3].sample
+      user.save
+    end
+  end
 end
