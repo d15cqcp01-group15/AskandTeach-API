@@ -153,4 +153,11 @@ namespace :db do
       event.save
     end
   end
+
+  task update_phone_number_for_user: :environment do
+    User.all.each do |user|
+      user.phone_number = Faker::PhoneNumber.phone_number
+      user.save
+    end
+  end
 end

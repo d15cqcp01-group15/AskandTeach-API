@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    render json: @user.as_json(only: [:id, :name, :username, :email, :avatar, :birthday, :self_introduce, :opened_class, :joined_event]), status: :ok
+    render json: @user.as_json(only: [:id, :name, :username, :email, :avatar, :birthday, :self_introduce, :opened_class, :joined_event, :phone_number]), status: :ok
   end
 
   def create
