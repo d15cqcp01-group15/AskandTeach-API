@@ -175,4 +175,21 @@ namespace :db do
     end
 
   end
+
+  task update_course_description: :environment do
+    CNT1 = 'Lớp tại TNT ENglish: mỗi lớp học không quá 15 Học viên, cùng một trình độ.
+     Vui lòng làm bài kiểm tra trình độ tiếng anh miễn phí để được xếp lớp phù hợp.
+     Sau khi kiểm tra, TNT ENglish sẽ thông báo lại cho bạn biết trình độ tiếng anh của bạn,
+     và lịch khai giảng lớp học phù hợp với trình độ của bạn để bạn thu xếp lịch phù hợp và đăng kí học.'
+    CNT2 = 'Đào tạo doanh nghiệp: TNT ENglish sẽ trao đổi với Doanh nghiệp để tìm hiểu nhu cầu học tiếng anh của cán bộ nhân viên và đưa ra một chương trình học phù hợp,
+     sau đó cử giáo viên đến tận nơi đề đào tạo cho cán bộ nhân viên của Doanh nghiệp.
+     Vui lòng xem chi tiết ở hình thức đào tạo tiếng anh doanh nghiệp.'
+    CNT3 = 'Học riêng theo yêu cầu: Học viên muốn học lớp riêng tại nhà hoặc văn phòng theo chương trình riêng đáp ứng công việc của mình có thể đăng ký lớp học tiếng anh giao tiếp theo yêu cầu.
+     Lớp học phù hợp với những người bận rộn, muốn học tiếng anh cấp tốc,
+     hoặc học theo chương trình riêng, đặc thù.'
+     Course.all.each do |course|
+       course.description = [CNT1, CNT2, CNT3].sample
+       course.save
+     end
+  end
 end
