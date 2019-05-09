@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :events
   resources :detail_courses
   resources :courses
-  resources :users, param: :_username
+  resources :users
 
   post '/auth/login', to: 'authentication#login'
   post '/auth/signup', to: 'users#create'

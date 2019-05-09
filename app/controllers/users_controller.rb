@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    render json: @user, status: :ok
+    render json: @user.as_json(only: [:id, :name, :username, :email, :avatar]), status: :ok
   end
 
   def create
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
   private
 
   def find_user
-    @user = User.find_by_username!(params[:_username])
+    @user = User.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       render json: { errors: 'User not found' }, status: :not_found
   end
