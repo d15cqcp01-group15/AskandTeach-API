@@ -142,4 +142,15 @@ namespace :db do
     puts '-------->Update users infor Succesfully'
 
   end
+
+  task handle_time_for_course_and_event: :environment do
+    Course.all.each do |course|
+      course.open_time = (1570286196..1628174196).to_a.sample
+      course.save
+    end
+    Event.all.each do |event|
+      event.open_time = (1570286196..1628174196).to_a.sample
+      event.save
+    end
+  end
 end
