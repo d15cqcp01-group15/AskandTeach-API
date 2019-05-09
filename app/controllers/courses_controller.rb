@@ -6,7 +6,7 @@ class CoursesController < ApplicationController
   def index
     @courses = Course.all.order(created_at: :desc)
 
-    render json: @courses.as_json(only: Course::JSON_AGUMENT, include: [{user: {only: [:id, :username]}}])
+    render json: @courses.as_json(only: Course::JSON_AGUMENT, include: [{user: {only: [:id, :username, :profile_image]}}])
   end
 
   # GET /courses/1
