@@ -14,12 +14,18 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, AvatarUploader
 
+  DEFAULT_IMAGE = 'http://farrellaudiovideo.com/wp-content/uploads/2016/02/default-profile-pic-300x300.png'
+
   def opened_class
     self.detail_courses.count
   end
 
   def joined_event
     self.detail_events.count
+  end
+
+  def update_image_for_defaul_user
+    self.profile_image = DEFAULT_IMAGE
   end
 
   PERMIT_PARAMS = %i[

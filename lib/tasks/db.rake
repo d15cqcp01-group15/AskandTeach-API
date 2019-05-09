@@ -160,4 +160,19 @@ namespace :db do
       user.save
     end
   end
+
+  task update_user_profile_image: :environment do
+
+    PT1 = 'https://content-static.upwork.com/uploads/2014/10/02123010/profilephoto_goodcrop.jpg'
+    PT2 = 'https://amp.businessinsider.com/images/5899ffcf6e09a897008b5c04-750-750.jpg'
+    PT3 = 'http://www.anaivanovic.com/sites/default/files/styles/flexslider_full_mobile/public/profile.jpg?itok=50Q_EqHf'
+    PT4 = 'https://img2.thejournal.ie/inline/2470754/original/?width=428&version=2470754'
+    PT5 = 'https://www.eharmony.co.uk/dating-advice/wp-content/uploads/2018/06/datingprofile2-900x600.jpg'
+
+    User.all.each do |user|
+      user.profile_image = [PT1, PT2, PT3, PT4, PT5].sample
+      user.save
+    end
+
+  end
 end
