@@ -28,7 +28,7 @@ class CoursesController < ApplicationController
 
   def get_student_list course
     student_list = course.detail_courses.pluck(:user_id)
-    return User.where(id: student_list).pluck(:id, :username)
+    return User.where(id: student_list).pluck(:id, :username).map { |id, name| { id: id, username: name } }
   end
 
   # POST /courses
