@@ -10,7 +10,7 @@ class Course < ApplicationRecord
 
   enum skill: %i[listening speaking reading writing]
 
-  JSON_AGUMENT = [:id, :price, :uptime, :skill, :district, :city, :address, :longitude, :latitude, :description, :cover_image, :amount_student, :list_student, :class_opened].freeze
+  JSON_AGUMENT = [:id, :price, :uptime, :skill, :district, :city, :address, :longitude, :latitude, :description, :cover_image, :amount_student, :list_student, :class_opened, :open_time].freeze
 
   COURSE_PARAMS = ['price', 'uptime', 'skill', 'district', 'city', 'address', 'description', 'open_time'].freeze
 
