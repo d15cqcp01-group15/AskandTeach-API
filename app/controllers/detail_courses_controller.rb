@@ -47,9 +47,13 @@ class DetailCoursesController < ApplicationController
     course_id = params[:course_id]
     t = DetailCourse.where(user_id: user_id, course_id: course_id)
     t.destroy
-    render json: {
-      message: "Unregister Succesfully"
-    }, status: 200
+    respond_to do |format|
+      format.json {
+        render json: {
+        message: "Unregister Succesfully"
+      }, status: 200
+    }
+    end
   end
 
   private
