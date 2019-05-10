@@ -46,7 +46,7 @@ class DetailCoursesController < ApplicationController
     user_id = @current_user.id
     course_id = params[:course_id]
     t = DetailCourse.where(user_id: user_id, course_id: course_id)
-    t.destroy
+    DetailCourse.destroy(t.id)
     respond_to do |format|
       format.json {
         render json: {
