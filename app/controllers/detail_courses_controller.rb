@@ -49,9 +49,7 @@ class DetailCoursesController < ApplicationController
     DetailCourse.destroy(t.id)
     respond_to do |format|
       format.json {
-        render json: {
-        message: "Unregister Succesfully"
-      }, status: 200
+        render json: {message: 'Huy khoa hoc thanh cong'}, status: :ok
     }
     end
   end
