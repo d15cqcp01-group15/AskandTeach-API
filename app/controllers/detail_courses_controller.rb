@@ -42,7 +42,7 @@ class DetailCoursesController < ApplicationController
   def delete_register
     user_id = @current_user.id
     course_id = params[:course_id]
-    DetailCourse.where(user_id: user_id, course_id: course_id).destroy_all
+    DetailCourse.where(user_id: user_id, course_id: course_id).destroy
     render json: {
       message: "Unregister Succesfully"
     }, status: 200
