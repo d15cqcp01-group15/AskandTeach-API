@@ -1,6 +1,6 @@
 class DetailCoursesController < ApplicationController
-  before_action :set_detail_course, only: [:show, :update, :destroy]
-  before_action :authorize_request, only: [:create, :delete_register]
+  before_action :set_detail_course, only: [:show, :update]
+  before_action :authorize_request, only: [:create, :delete_register, :delete]
 
   # GET /detail_courses
   def index
@@ -36,6 +36,9 @@ class DetailCoursesController < ApplicationController
 
   # DELETE /detail_courses/1
   def destroy
+    user_id = @current_user.id
+    course_id = params[:course_id]
+    @detail_course = DetailCourse.where(user_id: user_id, course_id: course_id)
     @detail_course.destroy
   end
 
