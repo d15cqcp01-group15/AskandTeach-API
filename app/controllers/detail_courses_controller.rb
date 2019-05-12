@@ -45,10 +45,12 @@ class DetailCoursesController < ApplicationController
   def delete_register
     user_id = @current_user.id
     course_id = params[:course_id]
-    if DetailCourse.where(user_id: user_id, course_id: course_id).destroy_all
-      render json: {message: 'Huy khoa hoc khong thanh cong'}, status: :ok
+    DetailCourse.where(user_id: user_id, course_id: course_id).destroy_all
+
+    if DetailCourse.where(user_id: user_id, course_id: course_id).nil?
+      render json: {message: 'Huy khoa hoc thanh cong'}, status: :ok
     else
-      render json: {message: 'Huy khoa hoc thanh cong'}, status: :unprocessable_entity
+      render json: {message: 'Huy khoa hoc khong thanh cong'}, status: :unprocessable_entity
     end
   end
 
