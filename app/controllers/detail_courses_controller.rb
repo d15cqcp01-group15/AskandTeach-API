@@ -50,7 +50,7 @@ class DetailCoursesController < ApplicationController
     if DetailCourse.where(user_id: user_id, course_id: course_id).nil?
       render json: {message: 'Huy khoa hoc thanh cong'}, status: :ok
     else
-      render json: {message: 'Huy khoa hoc khong thanh cong'}, status: :unprocessable_entity
+      render json: {error: 'Huy khoa hoc khong thanh cong'}, status: :unprocessable_entity
     end
   end
 
