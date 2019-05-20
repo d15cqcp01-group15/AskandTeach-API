@@ -44,10 +44,9 @@ class CoursesController < ApplicationController
   end
 
   def handle_status(course)
-    time_now = Time.now.to_f
-    deadline_of_registration = Time.at(course.deadline_of_registration)
-    return 'openning' if deadline_of_registration > time_now
-    return 'closed' if deadline_of_registration < time_now
+    openning = Time.at(course.deadline_of_registration).future?
+    return 'openning' if openning
+    'closed'
   end
 
   # POST /courses
