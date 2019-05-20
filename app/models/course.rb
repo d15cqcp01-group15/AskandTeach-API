@@ -10,9 +10,16 @@ class Course < ApplicationRecord
 
   enum skill: %i[listening speaking reading writing]
 
-  JSON_AGUMENT = [:id, :price, :uptime, :skill, :district, :city, :address, :longitude, :latitude, :description, :cover_image, :amount_student, :list_student, :class_opened, :open_time].freeze
+  JSON_AGUMENT = [
+    :id, :price, :uptime,
+    :skill, :district, :city,
+    :address, :longitude, :latitude,
+    :description, :cover_image, :amount_student,
+    :list_student, :class_opened, :open_time,
+    :deadline_of_registration, :status
+  ].freeze
 
-  COURSE_PARAMS = ['price', 'uptime', 'skill', 'district', 'city', 'address', 'description', 'open_time'].freeze
+  COURSE_PARAMS = ['price', 'uptime', 'skill', 'district', 'city', 'address', 'description', 'open_time', 'deadline_of_registration'].freeze
 
   LIST_URL = 'https://res.cloudinary.com/no-nam/image/upload/v1554216712/listen.jpg'
   READ_URL = 'https://res.cloudinary.com/no-nam/image/upload/v1554172721/reading.jpg'
@@ -47,5 +54,12 @@ class Course < ApplicationRecord
 
   def class_opened
     self.user.courses.count
+  end
+
+  def status
+    time_now = Time.now.to_f
+    deadline_of_registration = Time.at(self.deadline_of_registration)
+    return 'openning' if deadline_of_registration > time_now
+    return 'closed' if deadline_of_registration < time_now
   end
 end

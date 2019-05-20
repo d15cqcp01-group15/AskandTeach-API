@@ -28,6 +28,8 @@ class CoursesController < ApplicationController
       class_opened: @course.user.courses.count,
       cover_image: @course.cover_image,
       open_time: @course.open_time,
+      status: handle_status(@course),
+      deadline_of_registration: @course.deadline_of_registration,
       user: {
         id: @course.user.id,
         username: @course.user.username,
@@ -39,6 +41,13 @@ class CoursesController < ApplicationController
   def get_student_list course
     student_list = course.detail_courses.pluck(:user_id)
     return User.where(id: student_list).pluck(:id, :username, :profile_image).map { |id, name, profile_image| { id: id, username: name, profile_image: profile_image } }
+  end
+
+  def handle_status(course)
+    time_now = Time.now.to_f
+    deadline_of_registration = Time.at(course.deadline_of_registration)
+    return 'openning' if deadline_of_registration > time_now
+    return 'closed' if deadline_of_registration < time_now
   end
 
   # POST /courses
