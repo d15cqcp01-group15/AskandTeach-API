@@ -28,7 +28,6 @@ class CoursesController < ApplicationController
       class_opened: @course.user.courses.count,
       cover_image: @course.cover_image,
       open_time: @course.open_time,
-      status: handle_status(@course),
       deadline_of_registration: @course.deadline_of_registration,
       user: {
         id: @course.user.id,

@@ -16,7 +16,7 @@ class Course < ApplicationRecord
     :address, :longitude, :latitude,
     :description, :cover_image, :amount_student,
     :list_student, :class_opened, :open_time,
-    :deadline_of_registration, :status
+    :deadline_of_registration
   ].freeze
 
   COURSE_PARAMS = ['price', 'uptime', 'skill', 'district', 'city', 'address', 'description', 'open_time', 'deadline_of_registration'].freeze
