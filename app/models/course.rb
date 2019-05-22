@@ -16,7 +16,7 @@ class Course < ApplicationRecord
     :address, :longitude, :latitude,
     :description, :cover_image, :amount_student,
     :list_student, :class_opened, :open_time,
-    :deadline_of_registration
+    :deadline_of_registration, :status
   ].freeze
 
   COURSE_PARAMS = ['price', 'uptime', 'skill', 'district', 'city', 'address', 'description', 'open_time', 'deadline_of_registration'].freeze
@@ -59,6 +59,6 @@ class Course < ApplicationRecord
   def status
     openning = Time.at(self.deadline_of_registration).future?
     return 'openning' if openning
-    'closed'
+    'closes'
   end
 end
