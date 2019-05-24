@@ -155,8 +155,9 @@ namespace :db do
   end
 
   task update_phone_number_for_user: :environment do
+    nums = ['0387225832', '0372045786', '0392742735']
     User.all.each do |user|
-      user.phone_number = Faker::PhoneNumber.phone_number
+      user.phone_number = nums.sample
       user.save
     end
   end

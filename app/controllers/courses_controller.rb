@@ -33,7 +33,8 @@ class CoursesController < ApplicationController
       user: {
         id: @course.user.id,
         username: @course.user.username,
-        profile_image: @course.user.profile_image
+        profile_image: @course.user.profile_image,
+        phone_number: @course.user.phone_number
       }
     }
   end
