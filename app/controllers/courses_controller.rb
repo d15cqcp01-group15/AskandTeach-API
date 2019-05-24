@@ -11,42 +11,17 @@ class CoursesController < ApplicationController
 
   # GET /courses/1
   def show
-    render json: {
-      id: @course.id,
-      name: @course.user.username,
-      price: @course.price,
-      uptime: @course.uptime,
-      skill: @course.skill,
-      district: @course.district,
-      city: @course.city,
-      longitude: @course.longitude,
-      latitude: @course.latitude,
-      address: @course.address,
-      description: @course.description,
-      student_list: get_student_list(@course),
-      amount_student: @course.detail_courses.count,
-      class_opened: @course.user.courses.count,
-      cover_image: @course.cover_image,
-      open_time: @course.open_time,
-      status: handle_status(@course),
-      deadline_of_registration: @course.deadline_of_registration,
-      user: {
-        id: @course.user.id,
-        username: @course.user.username,
-        profile_image: @course.user.profile_image,
-        phone_number: @course.user.phone_number
-      }
-    }
+    render json: handle_detail_course(@course)
   end
 
   def get_student_list course
     student_list = course.detail_courses.pluck(:user_id)
+
     return User.where(id: student_list).pluck(:id, :username, :profile_image).map { |id, name, profile_image| { id: id, username: name, profile_image: profile_image } }
   end
 
   def handle_status(course)
-    openning = Time.at(course.deadline_of_registration).future?
-    return 'openning' if openning
+    return 'openning' if Time.at(course.deadline_of_registration).future?
     'closed'
   end
 
@@ -84,5 +59,34 @@ class CoursesController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def course_params
       params.permit(Course::COURSE_PARAMS).merge(user_id: @current_user.id)
+    end
+
+    def handle_detail_course(course)
+      {
+        id: course.id,
+        name: course.user.username,
+        price: course.price,
+        uptime: course.uptime,
+        skill: course.skill,
+        district: course.district,
+        city: course.city,
+        longitude: course.longitude,
+        latitude: course.latitude,
+        address: course.address,
+        description: course.description,
+        student_list: get_student_list(course),
+        amount_student: course.detail_courses.count,
+        class_opened: course.user.courses.count,
+        cover_image: course.cover_image,
+        open_time: course.open_time,
+        status: handle_status(course),
+        deadline_of_registration: course.deadline_of_registration,
+        user: {
+          id: course.user.id,
+          username: course.user.username,
+          profile_image: course.user.profile_image,
+          phone_number: course.user.phone_number
+        }
+      }
     end
 end
