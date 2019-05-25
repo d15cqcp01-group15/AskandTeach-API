@@ -11,5 +11,8 @@ Rails.application.routes.draw do
   delete '/unregister_course', to: 'detail_courses#delete_register'
   get '/all_course', to: 'courses#index'
 
+  get '/user_course', to: 'courses#user_course'
+  get '/user_event', to: 'events#user_event'
+
   get '/*a', to: 'application#not_found'
 end

@@ -1,11 +1,16 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :update, :destroy]
-  before_action :authorize_request, only: [:create]
+  before_action :authorize_request, only: [:create, :user_course]
 
   # GET /courses
   def index
     @courses = Course.all.order(created_at: :desc)
 
+    render json: @courses.as_json(only: Course::JSON_AGUMENT, include: [{user: {only: [:id, :username, :profile_image]}}])
+  end
+
+  def user_course
+    @courses = Course.where(user_id: @current_user.id).order(created_at: :desc)
     render json: @courses.as_json(only: Course::JSON_AGUMENT, include: [{user: {only: [:id, :username, :profile_image]}}])
   end
 

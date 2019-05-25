@@ -1,10 +1,16 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :update, :destroy]
-  before_action :authorize_request, only: [:create]
+  before_action :authorize_request, only: [:create, :user_event]
 
   # GET /events
   def index
     @events = Event.all.order(created_at: :desc)
+
+    render json: @events.as_json(only: Event::EVENT_AGUMENT, include: [{user: {only: [:id, :username]}}])
+  end
+
+  def user_event
+    @events = Event.where(user_id: @current_user.id).order(created_at: :desc)
 
     render json: @events.as_json(only: Event::EVENT_AGUMENT, include: [{user: {only: [:id, :username]}}])
   end
