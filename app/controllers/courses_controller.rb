@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :update, :destroy]
-  before_action :authorize_request, only: [:create, :user_course]
+  before_action :authorize_request, only: [:create, :user_course, :joined_course]
 
   # GET /courses
   def index
@@ -12,6 +12,16 @@ class CoursesController < ApplicationController
   def user_course
     @courses = Course.where(user_id: @current_user.id).order(created_at: :desc)
     render json: @courses.as_json(only: Course::JSON_AGUMENT, include: [{user: {only: [:id, :username, :profile_image]}}])
+  end
+
+  def joined_course
+    course_of_user = @current_user.detail_courses
+    if course_of_user.blank?
+      render json: { message: "Người dùng này chưa tham gia khoá học nào !"}
+    else
+      course_joined = Course.where(id: course_of_user.pluck(:course_id))
+      render json: course_joined.as_json(only: Course::JSON_AGUMENT, include: [{user: {only: [:id, :username, :profile_image]}}])
+    end
   end
 
   # GET /courses/1

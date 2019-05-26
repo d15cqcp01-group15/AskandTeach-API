@@ -12,7 +12,10 @@ Rails.application.routes.draw do
   get '/all_course', to: 'courses#index'
 
   get '/user_course', to: 'courses#user_course'
+  get 'joined_course', to: 'courses#joined_course'
+
   get '/user_event', to: 'events#user_event'
+  get 'joined_event', to: 'events#joined_event'
 
   get '/*a', to: 'application#not_found'
 end

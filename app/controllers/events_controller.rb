@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :update, :destroy]
-  before_action :authorize_request, only: [:create, :user_event]
+  before_action :authorize_request, only: [:create, :user_event, :joined_event]
 
   # GET /events
   def index
@@ -13,6 +13,17 @@ class EventsController < ApplicationController
     @events = Event.where(user_id: @current_user.id).order(created_at: :desc)
 
     render json: @events.as_json(only: Event::EVENT_AGUMENT, include: [{user: {only: [:id, :username]}}])
+  end
+
+  def joined_event
+    event_of_user = @current_user.detail_events
+
+    if event_of_user.blank?
+      render json: { message: "Người dùng này chưa tham gia event nào !"}
+    else
+      event_joined = Event.where(id: event_of_user.pluck(:event_id))
+      render json: event_joined.as_json(only: Event::EVENT_AGUMENT, include: [{user: {only: [:id, :username]}}])
+    end
   end
 
   # GET /events/1
