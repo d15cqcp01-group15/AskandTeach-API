@@ -210,7 +210,7 @@ namespace :db do
 
   task make_deadline: :environment do
     Course.all.map do |course|
-      time = Time.zone.now + (360..172800).to_a.sample
+      time = Time.zone.now + 172800
       course.deadline_of_registration = time.to_f
       course.save
     end
