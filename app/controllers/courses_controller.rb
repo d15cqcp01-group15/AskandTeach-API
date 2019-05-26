@@ -10,7 +10,7 @@ class CoursesController < ApplicationController
   end
 
   def user_course
-    @courses = Course.where(user_id: @current_user.id).order(created_at: :desc)
+    @courses = Course.where(user_id: @current_user.id, state: true).order(created_at: :desc)
     render json: @courses.as_json(only: Course::JSON_AGUMENT, include: [{user: {only: [:id, :username, :profile_image]}}])
   end
 
