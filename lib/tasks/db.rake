@@ -262,6 +262,11 @@ namespace :db do
       tp.content = descriptions.sample
       tp.save
     end
+  end
 
+  task update_user_introduction: :environment do
+    changed = User.where(id: 35).first
+    changed.self_introduce = "Xin chào, tôi là Peter, quê nhà tôi ở Rotherham (Anh). Tôi có bằng Cử nhân Văn học Anh và chứng chỉ TESOL. Sau khi quyết định theo nghiệp giảng dạy, tôi dạy tiếng Anh ở Ulaanbaatar (Mông Cổ) trong hơn hai năm. Tôi chọn dạy tiếng Anh ở Việt Nam vì nhận ra rằng người Việt rất say mê học tiếng Anh và các bạn cũng là những học viên tuyệt vời. Quá trình giảng dạy tại Wall Street English đã chứng thực điều này"
+    changed.save
   end
 end
