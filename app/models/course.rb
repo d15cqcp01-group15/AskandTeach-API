@@ -39,6 +39,10 @@ class Course < ApplicationRecord
     if self.listening?
       self.cover_image = LIST_URL
     end
+    if self.deadline_of_registration.nil?
+      time = Time.zone.now + 172800
+      self.deadline_of_registration = time.to_f
+    end
   end
 
   private
