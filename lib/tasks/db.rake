@@ -239,4 +239,29 @@ namespace :db do
       event.save
     end
   end
+
+  task handle_topic_content: :environment do
+    titles = [
+      "Phát âm cuối sao cho đúng",
+      "Làm sao cải thiện cho người mới bắt đầu",
+      "Học tiếng Anh sao cho hiệu quả",
+      "Phương pháp học tiếng Anh của người nổi tiếng",
+      "Giao lưu cùng Khánh Vy"
+    ].freeze
+
+    descriptions = [
+      "Londoner là một trong những trang blog nổi tiếng nhất ở Anh. Tại đây, tác giả Rosie chia sẻ về tất cả các khía cạnh của cuộc sống hằng ngày, từ công thức nấu ăn, phong cách ăn mặc hay cả về chú chó xinh xắn của cô ấy khi họ ở London. Với nội dung khá thu hút cùng với khả năng miêu tả sinh động và chi tiết, trang này khá phù hợp với người nói tiếng Anh ở trình độ sơ cấp",
+      "Đừng nói với tôi là bạn chưa từng nghe đến trang Deliciously Ella nhé?! Blog của Ella là nơi cô chia sẻ những ý tưởng nấu nướng độc đáo và những lần trải nghiệm làm bánh với rau củ và các loại nguyện liệu hoàn toàn tự nhiên. Và các bài viết của cô cũng đã tạo cảm hứng cho hàng triệu người trong việc duy trì một lối sống lành mạnh.",
+      "Những phát thanh viên của đài BBC từ trước đến này luôn được biết đến với chất giọng Anh Anh siêu chuẩn của mình hay những bài báo của họ luôn được viết bằng một văn phong lôi cuốn và cấu trúc ngữ pháp đa dạng. Cho nên đây là nơi lý tưởng đề học tiếng Anh. Trang này cung cấp hàng trăm video, bài viết và bài tập miễn phí cho tất cả đối tượng học viên.",
+      "Bạn sẽ lập tức đi lấy ngay hộ chiếu và dọn đồ cho chuyến đi của mình trước khi có thể thốt lên bạn yêu thích trang blog này và những bức hình tuyệt đẹp được đăng tải ở đây nhiều thế nào. Bạn có thể tìm thấy mọi thứ từ những nơi có ẩm thực tuyệt vời nhất đến những địa điểm ít người đặt chân đến, World of Wanderlust cung cấp cho bạn những kinh nghiệm quý giá để lên kế hoạch cho chuyến đi của mình.",
+      "Trang blog đặt theo tên với tác giả này mang đến những bài viết về Tiếng Anh thông dụng của người Anh trong đời sống hằng ngày. Trước đây cô từng là nhà báo và những bài viết của cô thường xoay quanh những mối quan hệ trong cuộc sống, những quyển sách yêu thích và cả phong cách ăn mặc. Khi đọc blog của Hannah, bạn sẽ học được những cụm từ hay ho và cả những từ long mà thầy cô không dạy bạn trên lớp."
+    ]
+
+    Topic.all.each do |tp|
+      tp.title = titles.sample
+      tp.content = descriptions.sample
+      tp.save
+    end
+
+  end
 end
