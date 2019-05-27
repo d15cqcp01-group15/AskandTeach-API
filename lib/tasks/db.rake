@@ -215,4 +215,19 @@ namespace :db do
       course.save
     end
   end
+
+  task handle_title_event: :environment do
+    titles = [
+      "Phát âm cuối sao cho đúng",
+      "Làm sao cải thiện cho người mới bắt đầu",
+      "Học tiếng Anh sao cho hiệu quả",
+      "Phương pháp học tiếng Anh của người nổi tiếng",
+      "Giao lưu cùng Khánh Vy"
+    ].freeze
+
+    Event.all.each do |event|
+      event.title = titles.sample
+      event.save
+    end
+  end
 end
