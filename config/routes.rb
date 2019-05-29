@@ -20,4 +20,5 @@ Rails.application.routes.draw do
   get 'joined_event', to: 'events#joined_event'
 
   get '/*a', to: 'application#not_found'
+  # todo: just for checking
 end
